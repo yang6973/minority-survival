@@ -374,7 +374,7 @@ function renderResult(round) {
                   : round.question.optionB
               }
             </strong>
-            
+
             <span>
               <b id="playerPercent">0%</b>가 같은 선택을 했어요
             </span>
@@ -982,7 +982,7 @@ function buildMixedHallOfFameRanking(realRanking) {
   if (realRanking.length >= 10) {
     return realRanking
       .sort((a, b) => b.best_streak - a.best_streak)
-      .slice(0, 10);
+      .slice(0, 5);
   }
 
   const fakeNames = [
@@ -1005,7 +1005,7 @@ function buildMixedHallOfFameRanking(realRanking) {
   return [...realRanking, ...fakeNames]
     .sort(() => Math.random() - 0.5)
     .sort((a, b) => b.best_streak - a.best_streak)
-    .slice(0, 10);
+    .slice(0, 5);
 }
 
 async function checkNicknameAvailable(nickname) {
