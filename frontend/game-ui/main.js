@@ -367,14 +367,25 @@ function renderResult(round) {
           <div class="my-choice-card">
             <p>내 선택</p>
 
-            <strong class="choice-title">
-              ${
-                round.playerChoice === "A"
-                  ? round.question.optionA
-                  : round.question.optionB
-              }
-            </strong>
+                ${(() => {
 
+                  const selectedText =
+                    round.playerChoice === "A"
+                      ? round.question.optionA
+                      : round.question.optionB;
+
+                  const titleClass =
+                    selectedText.length >= 12
+                      ? "choice-title small"
+                      : "choice-title";
+
+                  return `
+                    <strong class="${titleClass}">
+                      ${selectedText}
+                    </strong>
+                  `;
+
+                })()}
             <span>
               <b id="playerPercent">0%</b>가 같은 선택을 했어요
             </span>
