@@ -532,9 +532,8 @@ function renderResult(round) {
     document.getElementById("shareReviveBtn");
 
   if (shareReviveBtn) {
+
     shareReviveBtn.onclick = async () => {
-      shareReviveBtn.disabled = true;
-      shareReviveBtn.textContent = "공유 준비 중...";
 
       const shared = await tryShareResult();
 
@@ -543,16 +542,9 @@ function renderResult(round) {
         return;
       }
 
-      const shared = await tryShareResult();
-
-      if (!shared) {
-        renderShareFailedCard();
-        return;
-      }
-
-      renderSharedReviveCard();      
+      renderSharedReviveCard();
     };
-  }
+  }  
 }
 
 function renderSharedReviveCard() {
