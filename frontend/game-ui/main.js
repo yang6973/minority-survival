@@ -199,6 +199,22 @@ function renderRoundIntro(round) {
   `;
 }
 
+function getChoiceButtonClass(text) {
+  if (!text) {
+    return "choice-btn";
+  }
+
+  if (text.length >= 24) {
+    return "choice-btn choice-btn-xsmall";
+  }
+
+  if (text.length >= 16) {
+    return "choice-btn choice-btn-small";
+  }
+
+  return "choice-btn";
+}
+
 function renderRound(round) {
   const liveCrowd = buildLiveCrowdData(round.prediction);
 
@@ -261,13 +277,13 @@ function renderRound(round) {
       </section>
 
       <section class="choice-grid">
-        <button class="choice-btn" data-choice="A">
+        <button class="${getChoiceButtonClass(round.question.optionA)}" data-choice="A">
           ${round.question.optionA}
         </button>
 
-        <button class="choice-btn" data-choice="B">
+        <button class="${getChoiceButtonClass(round.question.optionB)}" data-choice="B">
           ${round.question.optionB}
-        </button>
+        </button>        
       </section>
 
       <p class="hint">

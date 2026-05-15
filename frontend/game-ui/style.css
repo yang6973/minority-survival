@@ -2570,3 +2570,15 @@ body {
   line-height: 1.22 !important;
   letter-spacing: -0.04em !important;
 }
+
+.choice-btn-small {
+  font-size: 16px !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.choice-btn-xsmall {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.05em !important;
+}
