@@ -828,31 +828,38 @@ function buildShareText() {
   return pickRandom(messages);
 }
 
-async function tryShareResult() {
-  const shareText = buildShareText();
-  const shareUrl = window.location.href;
+  async function tryShareResult() {
+    const shareText = buildShareText();
+    const shareUrl = window.location.href;
+    const fullText = `${shareText}\n\n${shareUrl}`;
 
-  try {
-    if (navigator.share) {
-      await navigator.share({
-        title: "끼리끼리 광탈",
-        text: shareText,
-        url: shareUrl,
-      });
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "끼리끼리 광탈",
+          text: shareText,
+          url: shareUrl,
+        });
 
-      return true;
+        return true;
+      }
+    } catch (error) {
+      console.warn("공유창 실패 또는 취소:", error);
     }
 
-    await navigator.clipboard.writeText(
-      `${shareText}\n${shareUrl}`
-    );
+    try {
+      await navigator.clipboard.writeText(fullText);
 
+      alert("공유 링크가 복사됐어요. 친구에게 붙여넣기 해주세요.");
+      return true;
+    } catch (error) {
+      console.warn("클립보드 복사 실패:", error);
+    }
+
+    prompt("아래 내용을 복사해서 친구에게 보내주세요.", fullText);
     return true;
-  } catch (error) {
-    return false;
   }
-}
-
+  
 function wait(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
