@@ -119,7 +119,7 @@ function renderNicknameStart() {
           솔직히 고르면 탈락,<br />
           꼬고 꼬아야 살아남습니다.
         </div>
-        
+
         <div class="nickname-panel">
           <label for="nicknameInput">
             닉네임을 입력해주세요 <small>최대 10자</small>
@@ -367,14 +367,14 @@ function renderResult(round) {
           <div class="my-choice-card">
             <p>내 선택</p>
 
-            <strong>
+            <strong class="choice-title">
               ${
                 round.playerChoice === "A"
                   ? round.question.optionA
                   : round.question.optionB
               }
             </strong>
-
+            
             <span>
               <b id="playerPercent">0%</b>가 같은 선택을 했어요
             </span>
