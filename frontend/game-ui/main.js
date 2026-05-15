@@ -374,10 +374,14 @@ function renderResult(round) {
                       ? round.question.optionA
                       : round.question.optionB;
 
-                  const titleClass =
-                    selectedText.length >= 12
-                      ? "choice-title small"
-                      : "choice-title";
+                  let titleClass = "choice-title";
+
+                  if (selectedText.length >= 22) {
+                    titleClass += " xsmall";
+                  }
+                  else if (selectedText.length >= 16) {
+                    titleClass += " small";
+                  }
 
                   return `
                     <strong class="${titleClass}">
@@ -386,7 +390,8 @@ function renderResult(round) {
                   `;
 
                 })()}
-            <span>
+
+          <span>
               <b id="playerPercent">0%</b>가 같은 선택을 했어요
             </span>
           </div>
