@@ -116,9 +116,10 @@ function renderNicknameStart() {
 
         <div class="start-rule-line">
           <span>⚡</span>
-          솔직히 고르면 탈락, 꼬고 꼬아야 살아남습니다.
+          솔직히 고르면 탈락,<br />
+          꼬고 꼬아야 살아남습니다.
         </div>
-
+        
         <div class="nickname-panel">
           <label for="nicknameInput">
             닉네임을 입력해주세요 <small>최대 10자</small>
