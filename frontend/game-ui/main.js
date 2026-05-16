@@ -87,8 +87,8 @@ function render() {
 
     saveScore(
       session.nickname,
-      session.survivalStreak
-    );
+      finalStreak
+    );    
   }
 
   renderResult(round);
@@ -331,7 +331,16 @@ function renderResult(round) {
   const crowdLevel = getCrowdLevel(playerPercent, survived);
   const isNearMiss = !survived && playerPercent <= 55;
 
-  const record = updateBestStreak(session.survivalStreak);
+  const finalStreak =
+  round.survived
+    ? session.survivalStreak
+    : Math.max(
+        session.survivalStreak,
+        session.lastSurvivalStreak || 0,
+        round.roundNumber - 1
+      );
+
+  const record = updateBestStreak(finalStreak);
 
   const senseScore = calculateSenseScore(round);
   const senseGrade = buildSenseGrade(senseScore);
@@ -968,8 +977,11 @@ async function loadHallOfFame() {
 async function renderHallOfFame() {
   const ranking = await loadHallOfFame();
 
+  const savedRecord =
+    updateBestStreak(session?.survivalStreak || 0);
+
   const myRecord =
-    Number(localStorage.getItem("best_streak") || 0);
+    savedRecord.bestStreak || 0;
 
   const needMore =
     Math.max(0, HALL_OF_FAME_MIN_STREAK - myRecord);
