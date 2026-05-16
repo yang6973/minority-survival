@@ -534,9 +534,7 @@ function renderResult(round) {
     document.getElementById("shareReviveBtn");
 
   if (shareReviveBtn) {
-
     shareReviveBtn.onclick = async () => {
-
       const shared = await tryShareResult();
 
       if (!shared) {
@@ -863,8 +861,8 @@ function buildShareText() {
     const shareUrl = window.location.href;
     const fullText = `${shareText}\n\n${shareUrl}`;
 
-    try {
-      if (navigator.share) {
+    if (navigator.share) {
+      try {
         await navigator.share({
           title: "끼리끼리 광탈",
           text: shareText,
@@ -872,24 +870,22 @@ function buildShareText() {
         });
 
         return true;
+      } catch (error) {
+        console.warn("공유 취소 또는 실패:", error);
+        return false;
       }
-    } catch (error) {
-      console.warn("공유창 실패 또는 취소:", error);
     }
 
     try {
       await navigator.clipboard.writeText(fullText);
-
       alert("공유 링크가 복사됐어요. 친구에게 붙여넣기 해주세요.");
       return true;
     } catch (error) {
-      console.warn("클립보드 복사 실패:", error);
+      prompt("아래 내용을 복사해서 친구에게 보내주세요.", fullText);
+      return true;
     }
-
-    prompt("아래 내용을 복사해서 친구에게 보내주세요.", fullText);
-    return true;
   }
-
+  
 function wait(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
