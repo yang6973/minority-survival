@@ -342,7 +342,7 @@ function renderResult(round) {
   const canUseShareRevive =
     !survived &&
     finalStreak >= SHARE_REVIVE_MIN_STREAK;
-    
+
   app.innerHTML = `
     <main class="screen result ${survived ? "survived" : "eliminated"}">
       <section class="result-card">
@@ -572,6 +572,8 @@ function renderSharedReviveCard() {
 
   document.getElementById("confirmReviveBtn").onclick = () => {
     session = useSharedRevive(session);
+    session = prepareNextRound(session);
+
     showRoundIntro = true;
     render();
   };
