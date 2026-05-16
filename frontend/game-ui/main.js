@@ -54,7 +54,7 @@ const supabase = window.supabase.createClient(
 
 const DEV_MODE = false;
 const HALL_OF_FAME_MIN_STREAK = 5;
-const SHARE_REVIVE_MIN_STREAK = 3;
+const SHARE_REVIVE_MIN_STREAK = 0;
 
 const app = document.getElementById("app");
 
@@ -885,7 +885,7 @@ function buildShareText() {
       return true;
     }
   }
-  
+
 function wait(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
