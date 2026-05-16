@@ -541,42 +541,8 @@ function renderResult(round) {
         return;
       }
 
-      renderSharedReviveCard();
-    };
+      renderHallOfFame();    };
   }  
-}
-
-function renderSharedReviveCard() {
-  app.innerHTML = `
-    <main class="screen thinking-screen">
-      <section class="thinking-card revive-card">
-        <p class="thinking-label">
-          LAST CHANCE
-        </p>
-
-        <h1>
-          한 번 더 살아났어요
-        </h1>
-
-        <p class="thinking-message">
-          공유 완료!<br />
-          이번 기록을 이어서 한 판 더 도전합니다.
-        </p>
-
-        <button id="confirmReviveBtn">
-          한판 더 하기
-        </button>
-      </section>
-    </main>
-  `;
-
-  document.getElementById("confirmReviveBtn").onclick = () => {
-    session = useSharedRevive(session);
-    session = prepareNextRound(session);
-
-    showRoundIntro = true;
-    render();
-  };
 }
 
 function buildRollingCrowdReactionHtml(round) {
@@ -1030,7 +996,7 @@ async function renderHallOfFame() {
         </div>
 
         <button id="retryBtn" class="start-game-btn">
-          처음부터 다시하기
+          한판 더 하기
         </button>
       </section>
     </main>
