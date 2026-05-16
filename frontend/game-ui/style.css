@@ -2582,3 +2582,9 @@ body {
   line-height: 1.2 !important;
   letter-spacing: -0.05em !important;
 }
+
+.revive-card h1 {
+  font-size: 30px !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.06em !important;
+}
