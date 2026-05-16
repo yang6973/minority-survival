@@ -87,8 +87,8 @@ function render() {
 
     saveScore(
       session.nickname,
-      finalStreak
-    );    
+      getFinalStreak(round)
+    );       
   }
 
   renderResult(round);
@@ -331,14 +331,7 @@ function renderResult(round) {
   const crowdLevel = getCrowdLevel(playerPercent, survived);
   const isNearMiss = !survived && playerPercent <= 55;
 
-  const finalStreak =
-  round.survived
-    ? session.survivalStreak
-    : Math.max(
-        session.survivalStreak,
-        session.lastSurvivalStreak || 0,
-        round.roundNumber - 1
-      );
+  const finalStreak = getFinalStreak(round);
 
   const record = updateBestStreak(finalStreak);
 
@@ -348,7 +341,7 @@ function renderResult(round) {
 
   const canUseShareRevive =
     !survived &&
-    session.survivalStreak >= SHARE_REVIVE_MIN_STREAK &&
+    finalStreak >= SHARE_REVIVE_MIN_STREAK &&
     !session.sharedReviveUsed;
 
   app.innerHTML = `
@@ -1112,3 +1105,14 @@ async function checkNicknameAvailable(nickname) {
 }
 
 render();
+
+function getFinalStreak(round) {
+  if (round.survived) {
+    return session.survivalStreak || 0;
+  }
+
+  return Math.max(
+    session.survivalStreak || 0,
+    round.roundNumber - 1
+  );
+}
