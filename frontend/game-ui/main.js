@@ -342,7 +342,7 @@ function renderResult(round) {
   const canUseShareRevive =
     !survived &&
     finalStreak >= SHARE_REVIVE_MIN_STREAK;
-
+    
   app.innerHTML = `
     <main class="screen result ${survived ? "survived" : "eliminated"}">
       <section class="result-card">
@@ -967,7 +967,7 @@ async function renderHallOfFame() {
 
   const savedRecord =
     updateBestStreak(getFinalStreak(session?.currentRound || { survived: false, roundNumber: 1 }));
-    
+
   const myRecord =
     savedRecord.bestStreak || 0;
 
